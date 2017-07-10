@@ -5,15 +5,24 @@ ADD ./sources.list /etc/apt
 RUN apt-get update
 
 RUN apt-get -y install php
+
+# install nginx && add vhost for unknow
 RUN apt-get -y install nginx
+ADD ./nginx/unknow /etc/nginx/sites-enabled/
+
 RUN apt-get -y install curl
 RUN apt-get -y install zip
 RUN apt-get -y install git
+RUN apt-get -y install vim
+RUN apt-get -y remove apache
 
 RUN echo "mysql-server mysql-server/root_password password 123456" | debconf-set-selections && \
 echo "mysql-server mysql-server/root_password_again password 123456" | debconf-set-selections  && \
 apt-get -y install mysql-server
-RUN apt-get -y install php-curl php-gd php-mysql php-mbstring
+# 为php-fpm创建运行文件夹
+RUN mkdir /run/php
+RUN apt-get -y install php7.0-curl php7.0-gd php7.0-mysql php7.0-mbstring php7.0-zip php7.0-xml php7.0-fpm
+RUN php-fpm
 
 # composer install
 RUN php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" && \

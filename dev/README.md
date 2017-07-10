@@ -8,7 +8,7 @@ develop env
 ```
 3. create container
 ```
-sudo docker run -it --name unknow-dev-container -d -p 8080:80 -v {ProjectPath}:/var/www/html/dev unknow-dev
+sudo docker run -itd --name unknow-dev-container -v {ProjectPath}:/var/www/html/dev unknow-dev
 ```
 
 4. run container
