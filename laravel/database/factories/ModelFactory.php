@@ -22,3 +22,21 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Project::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'owner' => $faker->unique()->safeEmail,
+        'yml' => $faker->text()
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Task::class, function (Faker\Generator $faker) {
+    return [
+        'status' => 0,
+        'start_time' => $faker->time(),
+        'end_time'=>$faker->time(),
+    ];
+});

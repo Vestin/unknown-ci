@@ -19,10 +19,16 @@ RUN apt-get -y remove apache
 RUN echo "mysql-server mysql-server/root_password password 123456" | debconf-set-selections && \
 echo "mysql-server mysql-server/root_password_again password 123456" | debconf-set-selections  && \
 apt-get -y install mysql-server
+RUN mysql -uroot -p123456 -e"grant all privileges on *.*  to  'root'@'%'  identified by '123456'  with grant option;flush privileges;"
+RUN echo "bind-address            = 0.0.0.0" >> /etc/mysql/mysql.conf.d/mysqld.cnf && service mysql restart
 # 为php-fpm创建运行文件夹
 RUN mkdir /run/php
 RUN apt-get -y install php7.0-curl php7.0-gd php7.0-mysql php7.0-mbstring php7.0-zip php7.0-xml php7.0-fpm
+RUN apt-get autoremove apache2
+
+RUN nginx
 RUN php-fpm
+RUN service mysql start
 
 # composer install
 RUN php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" && \
