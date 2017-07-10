@@ -11,6 +11,12 @@
 |
 */
 
+use Illuminate\Support\Facades\View;
+
 Route::get('/', function () {
+    //return view::make('hello');
     return view('welcome');
 });
+
+Route::get('projects','ProjectController@all')->name('projects');
+Route::get('project/{id}','ProjectController@detail')->name('project');
