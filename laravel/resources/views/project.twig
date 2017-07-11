@@ -1,15 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "basic.twig" %}
 
-    <title>projects</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+{% block title %}projects{% endblock %}
+{% block head %}
     <style>
         .task {
             border-bottom:1px solid #EEE;
@@ -18,12 +10,12 @@
             list-style: none;
         }
     </style>
-</head>
-<body>
+{% endblock %}
 
-<div class="container">
+{% block content %}
     <a href="{{ route('projects') }}">back</a>
-    <h1>{{ project.name }}</h1>
+    <h1>{{ project.name }}</h1><a href="{{ route('edit-project',[project.id]) }}">edit</a>
+
     <ul>
         <li>name: {{ project.name }}</li>
         <li>owner: {{ project.owner }}</li>
@@ -45,7 +37,5 @@
         </div>
     {% else %}
     {% endfor %}
-</div>
+{% endblock %}
 
-</body>
-</html>

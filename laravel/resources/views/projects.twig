@@ -1,18 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "basic.twig" %}
 
-    <title>projects</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-</head>
-<body>
-
-<div class="container">
+{% block title %}projects{% endblock %}
+{% block content %}
+    <a href="{{ route('add-project') }}">add project</a>
     <h1>projects</h1>
     <ul>
         {% for project in projects %}
@@ -21,7 +11,4 @@
             <li>No projects have been found.</li>
         {% endfor %}
     </ul>
-</div>
-
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% if errors.any() %}
+
+    Errors:
+    <div class="errors-box">
+    {% for error in errors.all() %}
+        <li class="text-danger">{{ error }}</li>
+    {% endfor %}
+    </div>
+
+{% endif %}
