@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         TwigBridge\ServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
     ],
 
     /*

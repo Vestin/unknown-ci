@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
 use Illuminate\Http\Request;
 use App\Project;
 use Illuminate\Support\Facades\Session;
@@ -21,17 +22,16 @@ class ProjectController extends Controller
     public function detail($id)
     {
         $project = Project::find($id);
-        dd(Session::get('status'));
         return View::make('project', ['project' => $project]);
     }
 
     public function add(Request $request)
     {
-        if($request->isMethod('get')){
+        if ($request->isMethod('get')) {
             return View::make('add-project');
         }
 
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required|unique:projects|max:255',
             'owner' => 'required|min:1',
         ]);
@@ -41,23 +41,23 @@ class ProjectController extends Controller
         $project->owner = $request->owner;
         $project->yml = $request->yml;
         $project->save();
-        $request->session()->flash('status','Task was successful!');
+        $request->session()->flash('statusMessage', 'Task was successful!');
 
-        return response()->redirectToRoute('project',[$project->id]);
+        return response()->redirectToRoute('project', [$project->id]);
     }
 
-    public function edit(Request $request,$id)
+    public function edit(Request $request, $id)
     {
         $project = Project::find($id);
-        if(!$project){
+        if (!$project) {
             throw new NotFoundHttpException();
         }
 
-        if($request->isMethod('get')){
-            return View::make('edit-project',['project'=>$project]);
+        if ($request->isMethod('get')) {
+            return View::make('edit-project', ['project' => $project]);
         }
 
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => [
                 'required',
                 Rule::unique('projects')->ignore($project->id)
@@ -69,9 +69,15 @@ class ProjectController extends Controller
         $project->owner = $request->owner;
         $project->yml = $request->yml;
         $project->save();
-        $request->session()->flash('status','Task was successful!');
+        $request->session()->flash('statusMessage', 'Task was successful!');
 
-        return response()->redirectToRoute('project',[$project->id]);
+        return response()->redirectToRoute('project', [$project->id]);
+    }
+
+    public function task($project_id, $task_id)
+    {
+        $task = Task::where(['project_id'=>$project_id,'id'=>$task_id])->firstOrFail();
+        return View::make('task',['task'=>$task]);
     }
 
 }

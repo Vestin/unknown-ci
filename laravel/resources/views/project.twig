@@ -14,7 +14,13 @@
 
 {% block content %}
     <a href="{{ route('projects') }}">back</a>
-    <h1>{{ project.name }}</h1><a href="{{ route('edit-project',[project.id]) }}">edit</a>
+    <h1>{{ project.name }}</h1>
+
+    <a href="{{ route('edit-project',[project.id]) }}">edit</a>
+    <form action="{{ route('build',[project.id]) }}" method="post">
+        {{ csrf_field() }}
+        <button class="btn btn-primary btn-xs" type="submit">build</button>
+    </form>
 
     <ul>
         <li>name: {{ project.name }}</li>
@@ -24,18 +30,14 @@
         <li>update at: {{ project.updated_at }}</li>
     </ul>
     <h2>tasks</h2>
-    {% for task in project.tasks %}
-        <div class="task">
-            <ul>
-                <li>task id: {{ task.id }}</li>
-                <li>status: {{ task.status }}</li>
-                <li>start time: {{ task.start_time }}</li>
-                <li>end time:{{ task.end_time }}</li>
-                <li>create at: {{ task.created_at }}</li>
-                <li>update at: {{ task.updated_at }}</li>
-            </ul>
-        </div>
+    <div class="task">
+        <ul>
+    {% for task in project.tasks|reverse %}
+            <li><a href="{{ route('task',[task.id]) }}">task id: {{ task.id }} | status: {{ task.status }} | start time: {{ task.start_time }} | end time:{{ task.end_time }} | create at: {{ task.created_at }} | update at: {{ task.updated_at }}</a></li>
     {% else %}
+        <li>No task.</li>
     {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
 
