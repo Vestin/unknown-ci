@@ -22,11 +22,7 @@ class BuildController extends Controller
             throw new NotFoundHttpException();
         }
 
-        $task = new Task();
-        $task->project_id = $project->id;
-        $task->status = Task::STATUS_INIT;
-        $task->saveOrFail();
-
+        $task = $project->createTask();
         $job = (new TaskJob($task))->onQueue('task');
         dispatch($job);
 

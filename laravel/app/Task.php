@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Events\TaskCreatedEvent;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,6 +15,10 @@ class Task extends Model
     CONST STATUS_ERROR = -1;
     CONST STATUS_DONE = 100;
 
+    protected $events = [
+        'created' => TaskCreatedEvent::class
+    ];
+
     public function project()
     {
         return $this->belongsTo('App\Project');
@@ -20,7 +26,21 @@ class Task extends Model
 
     public function getLog()
     {
-        //return storage_path('app/project_' . $this->project->id . '/task_' . $this->id . '.log');
-        return Storage::get('project_'.$this->project->id.'/task_'.$this->id.'.log');
+        try{
+            return Storage::disk('task')->get($this->getLogPath());
+        }catch (FileNotFoundException $exception){
+            return 'No Log';
+        }
+
+    }
+
+    public function getLogPath()
+    {
+        return env('LOCAL_ROOT_PATH') . '/build/project_' . $this->project->id . '/task_' . $this->id . '.log';
+    }
+
+    public function getWorkSpace()
+    {
+        return env('LOCAL_ROOT_PATH') . '/build/project_' . $this->project->id . '/task_' . $this->id . '_workspace/';
     }
 }

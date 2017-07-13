@@ -1,0 +1,30 @@
+actor: Tester
+coverage:
+    enabled: true
+    include:
+        - app/Http/*
+        - app/Project.php
+        - app/Task.php
+        - app/User.php
+    exclude:
+        - app/Http/Kernel.php
+paths:
+    tests: tests
+    log: tests/_output
+    data: tests/_data
+    helpers: tests/_support
+settings:
+    bootstrap: _bootstrap.php
+    colors: true
+    memory_limit: 1024M
+modules:
+    enabled:
+        - Db:
+            dsn: 'mysql:host=localhost;dbname=testing'
+            user: 'root'
+            password: '123456'
+            dump: tests/_data/dump.sql
+            populate: true
+            cleanup: true
+            reconnect: true
+            # populator: 'mysql -uroot -p123456 testing < tests/_data/dump.sql'
