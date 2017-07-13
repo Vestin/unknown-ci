@@ -22,3 +22,19 @@ BUILDING
     - BEFORE-BUILD
     - AFTER-BUILD
     - FINISH-BUILD
+
+
+queue 
+```
+php artisan queue:work --queue=task --tries=1
+```
+
+tests
+```
+./vendor/bin/codecept run
+```
+
+code coverage
+```
+./vendor/bin/codecept run --coverage --coverage-html
+```
