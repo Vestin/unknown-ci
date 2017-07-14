@@ -41,4 +41,5 @@ Route::get('project/{project_id}/task/{task_id}','ProjectController@task')->name
 //hooks
 Route::get('hooks','HookController@all')->name('hooks');
 Route::get('project/{id}/hook','HookController@project')->name('project-hook');
-Route::any('hook/detector','HookController@detector')->name('hook-detector');
+Route::any('hook','HookController@detector')->name('hook');
+Route::get('hook/unknowns','UnknownHookController@all')->name('unknown.hooks');

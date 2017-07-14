@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <a href="{{ route('projects') }}">projects</a>
+    <a href="{{ route('project',[project.id]) }}">back</a>
     <h1><span class="text-info">{{ project.name }}</span> <span class="text-muted">[edit]</span> </h1>
     <form action="{{ route('edit-project',[project.id]) }}" method="post">
         {{ csrf_field() }}

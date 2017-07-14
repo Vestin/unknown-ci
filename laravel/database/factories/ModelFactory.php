@@ -28,7 +28,7 @@ $factory->define(App\Project::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'owner' => $faker->unique()->safeEmail,
-        'yml' => $faker->text()
+        'yml' => $faker->text(),
     ];
 });
 
@@ -36,6 +36,7 @@ $factory->define(App\Project::class, function (Faker\Generator $faker) {
 $factory->define(App\Task::class, function (Faker\Generator $faker) {
     return [
         'status' => 0,
+        'yml' => $faker->text(),
         'start_time' => $faker->time(),
         'end_time'=>$faker->time(),
     ];

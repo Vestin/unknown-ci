@@ -20,7 +20,7 @@
     <div class="task">
         <ul>
             <li>task id: {{ task.id }}</li>
-            <li>status: {{ task.status }}</li>
+            <li class="{{ task.viewModel.statusClass }}">status: {{ task.viewModel.statusDes }}</li>
             <li>start time: {{ task.start_time }}</li>
             <li>end time:{{ task.end_time }}</li>
             <li>create at: {{ task.created_at }}</li>
@@ -30,4 +30,3 @@
     <h3>log</h3>
     <pre>{{ task.getLog() }}</pre>
 {% endblock %}
-

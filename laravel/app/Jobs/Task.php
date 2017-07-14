@@ -43,7 +43,7 @@ class Task implements ShouldQueue
                 Logger::INFO));
             $log->info('start handling');
 
-            $commands = $this->task->project->getConfig()['script'];
+            $commands = $this->task->getConfig()['script'];
             $cwd = storage_path($this->task->getWorkSpace());
             $this->initWorkSpace($cwd);
 

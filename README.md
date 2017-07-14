@@ -24,7 +24,7 @@ BUILDING
     - FINISH-BUILD
 
 
-queue 
+queue
 ```
 php artisan queue:work --queue=task --tries=1
 ```
@@ -33,6 +33,12 @@ tests
 ```
 ./vendor/bin/codecept run
 ```
+
+dump databasefile
+```
+mysqldump -uroot -p123456 unknow > tests/_data/dump.sql
+```
+
 
 code coverage
 ```

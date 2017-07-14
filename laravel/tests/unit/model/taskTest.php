@@ -42,4 +42,32 @@ class taskTest extends \Codeception\Test\Unit
         $log = $task->getLog();
         //$this->tester->assertEquals('No Log',$log);
     }
+
+    public function testTaskYaml()
+    {
+        $project = factory(Project::class)->create();
+        $project->yml = <<<AAA
+script: 
+    - mkdir tmp
+    - cd tmp && echo 1>file
+AAA;
+        $project->save();
+        $task = $project->createTask();
+        $config = $task->getConfig();
+        $this->tester->assertCount(2, $config['script']);
+    }
+
+    public function testTaskViewModel()
+    {
+        $project = factory(Project::class)->create();
+        $project->yml = <<<AAA
+script: 
+    - mkdir tmp
+    - cd tmp && echo 1>file
+AAA;
+        $project->save();
+        $task = $project->createTask();
+        $this->tester->assertEquals($task->id,$task->viewModel->id);
+        $this->tester->assertEquals($task->yml,$task->viewModel->yml);
+    }
 }

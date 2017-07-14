@@ -33,7 +33,7 @@
     <div class="task">
         <ul>
     {% for task in project.tasks|reverse %}
-            <li><a href="{{ route('task',[task.id]) }}">task id: {{ task.id }} | status: {{ task.status }} | start time: {{ task.start_time }} | end time:{{ task.end_time }} | create at: {{ task.created_at }} | update at: {{ task.updated_at }}</a></li>
+            <li class="{{ task.viewModel.statusClass }}" ><a href="{{ route('task',[task.id]) }}">task id: {{ task.id }} | status: {{ task.viewModel.statusDes }} | start time: {{ task.start_time }} | end time:{{ task.end_time }} | create at: {{ task.created_at }} | update at: {{ task.updated_at }}</a></li>
     {% else %}
         <li>No task.</li>
     {% endfor %}

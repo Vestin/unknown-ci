@@ -53,6 +53,19 @@ script:
 AAA;
         $project->save();
         $config = $project->getConfig();
-        $this->tester->assertCount(2,$config['script']);
+        $this->tester->assertCount(2, $config['script']);
+    }
+
+    public function testProjectViewModel()
+    {
+        $project = factory(Project::class)->create();
+        $project->yml = <<<AAA
+script: 
+    - mkdir tmp
+    - cd tmp && echo 1>file
+AAA;
+        $project->save();
+        $this->tester->assertEquals($project->id, $project->viewModel->id);
+        $this->tester->assertEquals($project->name,$project->viewModel->name);
     }
 }

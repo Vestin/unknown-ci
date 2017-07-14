@@ -1,0 +1,12 @@
+{% extends "basic.twig" %}
+
+{% block title %}hooks{% endblock %}
+{% block content %}
+    <a href="{{ route('hooks') }}">hooks</a>
+    <h1>Unknown Hooks</h1>
+    <ul>
+        {% for unknownHook in unknownHooks %}
+            <li>{{ unknownHook.request }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
