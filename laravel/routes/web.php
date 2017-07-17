@@ -43,3 +43,5 @@ Route::get('hooks','HookController@all')->name('hooks');
 Route::get('project/{id}/hook','HookController@project')->name('project-hook');
 Route::any('hook','HookController@detector')->name('hook');
 Route::get('hook/unknowns','UnknownHookController@all')->name('unknown.hooks');
+Route::delete('hook/unknowns','UnknownHookController@clear')->name('unknown.hooks.clear');
+Route::get('hook/unknown/{id}','UnknownHookController@detail')->name('unknown.hook.detail');

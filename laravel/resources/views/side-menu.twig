@@ -1,0 +1,5 @@
+<ul>
+    {% for item in sideMenu %}
+        <li><a href="{{ item.route }}"></a>{{ item.name }}</li>
+    {% endfor %}
+</ul>

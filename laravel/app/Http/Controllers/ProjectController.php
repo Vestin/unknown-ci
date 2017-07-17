@@ -16,19 +16,19 @@ class ProjectController extends Controller
     public function all()
     {
         $projects = Project::all();
-        return View::make('projects', ['projects' => $projects]);
+        return View::make('project.list', ['projects' => $projects]);
     }
 
     public function detail($id)
     {
         $project = Project::find($id);
-        return View::make('project', ['project' => $project]);
+        return View::make('project.detail', ['project' => $project]);
     }
 
     public function add(Request $request)
     {
         if ($request->isMethod('get')) {
-            return View::make('add-project');
+            return View::make('project.add');
         }
 
         $this->validate($request, [
@@ -54,7 +54,7 @@ class ProjectController extends Controller
         }
 
         if ($request->isMethod('get')) {
-            return View::make('edit-project', ['project' => $project]);
+            return View::make('project.edit', ['project' => $project]);
         }
 
         $this->validate($request, [
