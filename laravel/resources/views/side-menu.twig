@@ -1,5 +1,15 @@
-<ul>
+{% if sideMenu %}
+    <style>
+        .side-menu{
+            list-style: circle;
+        }
+        .side-menu li{
+            list-style: circle;
+        }
+    </style>
+    <ul class="side-menu">
     {% for item in sideMenu %}
-        <li><a href="{{ item.route }}"></a>{{ item.name }}</li>
+        <li><a href="{{ item.url }}">{{ item.name }}</a></li>
     {% endfor %}
-</ul>
+    </ul>
+{% endif %}

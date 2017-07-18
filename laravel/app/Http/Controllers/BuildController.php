@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\SideMenu;
 use App\Project;
 use App\Task;
 use App\Jobs\Task as TaskJob;
@@ -10,6 +11,18 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class BuildController extends Controller
 {
+
+    public function pre($id)
+    {
+        $project = Project::find($id);
+        if (!$project) {
+            throw new NotFoundHttpException();
+        }
+
+        SideMenu::build('project',$project);
+
+        return view('build.pre',['project'=>$project]);
+    }
 
     /**
      * @param int $id project id

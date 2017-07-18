@@ -1,0 +1,60 @@
+{% extends "basic.twig" %}
+
+{% block title %}hooks{% endblock %}
+
+{% block head %}
+    <style>
+        .params-box > div {
+            margin-right: 10px;
+        }
+
+        dd {
+            margin-left: 20px;
+            word-break: break-all;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Add Hook</h1>
+    <h2>Rules</h2>
+    <form action="{{ route('hook.create') }}" method="post" id="createHookForm">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" name="" id="">
+            </div>
+            <div class="col-md-4">
+                
+            </div>
+        </div>
+        <button class="btn btn-primary">Create Hook</button>
+    </form>
+    <hr>
+    {% for blockKey,block in unknownHook.parseRequest() %}
+        <h3>{{ blockKey }}</h3>
+        {% for key,value in block %}
+            <div class="params-box">
+                <div class="pull-left">
+                    <button class="btn btn-xs btn-success add-button">+</button>
+                </div>
+                <div class="pull-left">
+                    <dl>
+                        <dt>{{ key }}</dt>
+                        <dd>{{ value }}</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        {% else %}
+            No data here.
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+{% block script %}
+    <script>
+        $('.add-button').click(function () {
+            $(this).attr('disabled','disabled');
+        })
+    </script>
+{% endblock %}

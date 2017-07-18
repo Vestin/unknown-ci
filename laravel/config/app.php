@@ -179,6 +179,7 @@ return [
 
         TwigBridge\ServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+        App\Providers\SideMenuServiceProvider::class,
     ],
 
     /*
@@ -228,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Twig' => TwigBridge\Facade\Twig::class,
+        'SideMenu' => \App\Components\SideMenu::class,
     ],
 
 ];

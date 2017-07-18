@@ -1,0 +1,39 @@
+{% extends "basic.twig" %}
+
+{% block title %}hooks{% endblock %}
+{% block content %}
+    <h1>Unknown Hooks</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>remote ip</th>
+            <th>params</th>
+            <th>request time</th>
+            <th>action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for unknownHook in unknownHooks|reverse %}
+            <tr>
+                <td>{{ unknownHook.parseRequest().server.REMOTE_ADDR }}</td>
+                <td>{{ unknownHook.parseRequest().params|json_encode }}</td>
+                <td>{{ unknownHook.created_at }}</td>
+                <td><a href="{{ route('unknown.hook.detail',[unknownHook.id]) }}">more</a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">No Hook</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>remote ip</th>
+            <th>params</th>
+            <th>request time</th>
+            <th>action</th>
+        </tr>
+        </tfoot>
+    </table>
+
+{% endblock %}

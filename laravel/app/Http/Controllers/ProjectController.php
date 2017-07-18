@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\SideMenu;
 use App\Task;
 use Illuminate\Http\Request;
 use App\Project;
@@ -16,18 +17,25 @@ class ProjectController extends Controller
     public function all()
     {
         $projects = Project::all();
+
+        SideMenu::build('projects');
+
         return View::make('project.list', ['projects' => $projects]);
     }
 
     public function detail($id)
     {
         $project = Project::find($id);
+
+        SideMenu::build('project', $project);
+
         return View::make('project.detail', ['project' => $project]);
     }
 
     public function add(Request $request)
     {
         if ($request->isMethod('get')) {
+            SideMenu::build('projects');
             return View::make('project.add');
         }
 
@@ -54,6 +62,7 @@ class ProjectController extends Controller
         }
 
         if ($request->isMethod('get')) {
+            SideMenu::build('project', $project);
             return View::make('project.edit', ['project' => $project]);
         }
 
@@ -76,8 +85,8 @@ class ProjectController extends Controller
 
     public function task($project_id, $task_id)
     {
-        $task = Task::where(['project_id'=>$project_id,'id'=>$task_id])->firstOrFail();
-        return View::make('task',['task'=>$task]);
+        $task = Task::where(['project_id' => $project_id, 'id' => $task_id])->firstOrFail();
+        return View::make('task', ['task' => $task]);
     }
 
 }

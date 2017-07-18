@@ -16,19 +16,19 @@
 </head>
 <body>
 {% include 'main-menu.twig' %}
-<div class="container">
-    {% include 'status-message.twig' %}
-
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-2">
             {% include 'side-menu.twig' %}
         </div>
         <div class="col-md-10">
+            {% include 'status-message.twig' %}
+            {% include 'error.twig' %}
             {% block content %}
         </div>
     </div>
     {% endblock %}
-    {% include 'error.twig' %}
+
 </div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>

@@ -28,7 +28,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('*',StatusMessageViewComposer::class);
+        View::composer('status-message', StatusMessageViewComposer::class);
     }
 
 

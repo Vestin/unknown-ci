@@ -22,14 +22,15 @@ Route::get('projects','ProjectController@all')->name('projects');
 //project detail page
 Route::get('project/{id}','ProjectController@detail')->name('project');
 //add project page
-Route::match(['get','post'],'project','ProjectController@add')->name('add-project');
+Route::match(['get','post'],'project','ProjectController@add')->name('project.add');
 //updatde project page
-Route::match(['get','post'],'project/edit/{id}','ProjectController@edit')->name('edit-project');
+Route::match(['get','post'],'project/edit/{id}','ProjectController@edit')->name('project.edit');
 
 //build
 //building status ,create build task & view task
 //Route::post('project/{id}/build-view','BuildController@buildAndView')->name('build-and-view');
 //Route::get('project/{id}/pre-build','BuildController@preBuild')->name('pre-build');
+Route::get('project/{id}/pre-build','BuildController@pre')->name('pre-build');
 Route::post('project/{id}/build','BuildController@build')->name('build');
 
 Route::get('task/{task_id}',function($task_id){
@@ -39,9 +40,12 @@ Route::get('task/{task_id}',function($task_id){
 Route::get('project/{project_id}/task/{task_id}','ProjectController@task')->name('project-task');
 
 //hooks
+Route::get('hook/create/{unknownHookId}','HookController@createPage')->name('hook.create-page');
+Route::get('hook/create','HookController@create')->name('hook.create');
 Route::get('hooks','HookController@all')->name('hooks');
 Route::get('project/{id}/hook','HookController@project')->name('project-hook');
 Route::any('hook','HookController@detector')->name('hook');
 Route::get('hook/unknowns','UnknownHookController@all')->name('unknown.hooks');
+Route::get('hook/unknowns/pre-clear','UnknownHookController@preClear')->name('unknown.hooks.pre-clear');
 Route::delete('hook/unknowns','UnknownHookController@clear')->name('unknown.hooks.clear');
 Route::get('hook/unknown/{id}','UnknownHookController@detail')->name('unknown.hook.detail');
