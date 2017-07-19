@@ -14,7 +14,7 @@ class ViewModelNotFoundException extends \Exception
 
     static public function formModel($model, $targetViewClass)
     {
-        throw new static('Model:' . get_class($model) . '; ViewModel:' . $targetViewClass);
+        return new static('Model:' . get_class($model) . '; ViewModel:' . $targetViewClass);
     }
 
 }

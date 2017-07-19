@@ -26,7 +26,7 @@ class SideMenu
     public function render($name, ... $args)
     {
         $menu = $this->composer($name, ... $args);
-        return view('side-menu', ['menu' => $menu]);
+        return view('side-menu', ['sideMenu' => $menu]);
     }
 
     public function build($name, ...$args)

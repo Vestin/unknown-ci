@@ -17,16 +17,24 @@
 
 {% block content %}
     <h1>Add Hook</h1>
-    <h2>Rules</h2>
     <form action="{{ route('hook.create') }}" method="post" id="createHookForm">
-        <div class="row">
-            <div class="col-md-4">
-                <input type="text" name="" id="">
-            </div>
-            <div class="col-md-4">
-                
-            </div>
+        {{ csrf_field() }}
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" placeholder="Name">
         </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" id="description" class="form-control" rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="rule">Rules</label>
+            <textarea name="rule" id="rule" class="form-control" rows="5"></textarea>
+        </div>
+        
         <button class="btn btn-primary">Create Hook</button>
     </form>
     <hr>
@@ -39,7 +47,7 @@
                 </div>
                 <div class="pull-left">
                     <dl>
-                        <dt>{{ key }}</dt>
+                        <dt realkey="{{ blockKey }}.{{ key }}">{{ key }}</dt>
                         <dd>{{ value }}</dd>
                     </dl>
                 </div>
@@ -54,7 +62,13 @@
 {% block script %}
     <script>
         $('.add-button').click(function () {
-            $(this).attr('disabled','disabled');
+            $(this).attr('disabled', 'disabled');
+            var data = $('#rule').val();
+
+            var dl = $(this).parent().siblings('div').children('dl');
+            data += dl.children('dt').attr('realkey') + ':' + dl.children('dd').text();
+
+            $('#rule').val(data + '\n');
         })
     </script>
 {% endblock %}

@@ -45,12 +45,6 @@ class SideMenuTest extends \Codeception\Test\Unit
         });
         //$this->assertEquals([],$sideMenu->collection);
         $menu = $sideMenu->render('home','http://dota2.com');
-        $this->tester->assertEquals($menu->render(),<<<AAA
-<li><a href="http://www.baidu.com">baidu</a></li>
-<li><a href="http://www.google.com">google</a></li>
-<li><a href="http://dota2.com">diy</a></li>
-
-AAA
-);
+        $this->tester->assertStringStartsWith('    <style>',$menu->render());
     }
 }
