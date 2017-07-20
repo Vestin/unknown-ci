@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\TaskCreatedEvent;
+use App\Events\TriggerHookEvent;
+use App\Listeners\TaskCreatedEventListener;
+use App\Listeners\TriggerHookEventListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -13,9 +17,12 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\TaskCreatedEvent' => [
-            'App\Listeners\TaskCreatedEventListener',
+        TaskCreatedEvent::class => [
+            TaskCreatedEventListener::class,
         ],
+        TriggerHookEvent::class => [
+            TriggerHookEventListener::class,
+        ]
     ];
 
     /**

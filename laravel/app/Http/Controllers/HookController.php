@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Components\HookRetrieveTool;
 use App\Components\HookRuleParser;
+use App\Events\TriggerHookEvent;
 use App\Exceptions\HookRuleParseErrorException;
 use App\Facades\SideMenu;
 use App\Hook;
@@ -19,12 +21,21 @@ class HookController extends Controller
     {
         $hooks = Hook::all();
         SideMenu::build('hooks');
-        return view('hooks.list',['hooks'=>$hooks]);
+        return view('hooks.list', ['hooks' => $hooks]);
     }
 
     public function detector(Request $request)
     {
-        //check
+        //check && trigger build
+        $hooks = (new HookRetrieveTool())->retrieve($request);
+        if ($hooks !== null) {
+            foreach ($hooks as $hook) {
+                $triggerHookEvent = new TriggerHookEvent($hook);
+                event($triggerHookEvent);
+            }
+            return response('success', 200);
+        }
+
 
         // save unknown hook
         $unknownHook = new UnknownHook();
@@ -114,9 +125,23 @@ class HookController extends Controller
     public function detail($hook_id)
     {
         $hook = Hook::findOrFail($hook_id);
-
         SideMenu::build('hook', $hook);
         return view('hooks.detail', ['hook' => $hook]);
     }
 
+    public function active($hook_id, Request $request)
+    {
+        $hook = Hook::findOrFail($hook_id);
+        $hook->active();
+        $request->session()->flash('statusMessage', 'Hook Active Successful!');
+        return response()->redirectToRoute('hook.detail', [$hook_id]);
+    }
+
+    public function deActive($hook_id, Request $request)
+    {
+        $hook = Hook::findOrFail($hook_id);
+        $hook->deActive();
+        $request->session()->flash('statusMessage', 'Hook De-Active Successful.');
+        return response()->redirectToRoute('hook.detail', [$hook_id]);
+    }
 }

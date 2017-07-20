@@ -23,4 +23,22 @@ class Hook extends Model
         return $this->belongsToMany('App\Project');
     }
 
+    /**
+     * active hook
+     */
+    public function active()
+    {
+        $this->active = self::ACTIVE_ON;
+        $this->save();
+    }
+
+    /**
+     * de active hook
+     */
+    public function deActive()
+    {
+        $this->active = self::ACTIVE_OFF;
+        $this->save();
+    }
+
 }

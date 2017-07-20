@@ -25,6 +25,18 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-2 control-label">active</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">
+                    {% if hook.active %}
+                        <i class="glyphicon glyphicon-ok-circle text-success"></i>
+                    {% else %}
+                        <i class="glyphicon glyphicon-remove-circle text-danger"></i>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-2 control-label">description</label>
             <div class="col-sm-10">
                 <p class="form-control-static">{{ hook.description }}</p>
@@ -64,7 +76,7 @@
         <form action="{{ route('hook.de-active',[hook.id]) }}" method="post">
             {{ csrf_field() }}
             <input type="hidden" name="_method" value="PUT">
-            <button class="btn btn-primary">De-Active</button>
+            <button class="btn btn-warning">De-Active</button>
         </form>
     {% else %}
         <form action="{{ route('hook.active',[hook.id]) }}" method="post">

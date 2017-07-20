@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateHookAddActiveStatus extends Migration
+class UpdateProjectAddActiveStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UpdateHookAddActiveStatus extends Migration
      */
     public function up()
     {
-        Schema::table('hooks', function (Blueprint $table) {
-            $table->tinyInteger('active')->default(0)->after('rules');
+        Schema::table('projects', function (Blueprint $table) {
+            $table->tinyInteger('active')->default(0)->after('yml');
         });
     }
 
@@ -25,7 +25,7 @@ class UpdateHookAddActiveStatus extends Migration
      */
     public function down()
     {
-        Schema::table('hooks', function (Blueprint $table) {
+        Schema::table('projects', function (Blueprint $table) {
             $table->dropColumn('active');
         });
     }

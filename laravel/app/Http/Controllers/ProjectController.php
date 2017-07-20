@@ -48,6 +48,7 @@ class ProjectController extends Controller
         $project->name = $request->name;
         $project->owner = $request->owner;
         $project->yml = $request->yml;
+        $project->active = Project::ACTIVE_ON;
         $project->save();
         $request->session()->flash('statusMessage', 'Task was successful!');
 

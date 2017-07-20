@@ -44,6 +44,61 @@ INSERT INTO `failed_jobs` VALUES (1,'database','task','{\"displayName\":\"App\\\
 UNLOCK TABLES;
 
 --
+-- Table structure for table `hook_project`
+--
+
+DROP TABLE IF EXISTS `hook_project`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hook_project` (
+  `hook_id` int(11) NOT NULL,
+  `project_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hook_project`
+--
+
+LOCK TABLES `hook_project` WRITE;
+/*!40000 ALTER TABLE `hook_project` DISABLE KEYS */;
+INSERT INTO `hook_project` VALUES (1,27,NULL,NULL),(4,27,NULL,NULL);
+/*!40000 ALTER TABLE `hook_project` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hooks`
+--
+
+DROP TABLE IF EXISTS `hooks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hooks` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'hook name',
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parser` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'hook param parser',
+  `rules` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'hook content rules',
+  `active` tinyint(4) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hooks`
+--
+
+LOCK TABLES `hooks` WRITE;
+/*!40000 ALTER TABLE `hooks` DISABLE KEYS */;
+INSERT INTO `hooks` VALUES (1,'test hook 1','lkjlkjsdf','json','{\"params.token\":\"vestin\",\"params.branch\":\"master\"}',1,'2017-07-19 07:19:18','2017-07-20 02:47:28'),(4,'test hook 2','test hook 2','json','{\"server.HTTP_HOST\":\"172.17.0.2\"}',1,'2017-07-20 06:06:16','2017-07-20 06:06:23');
+/*!40000 ALTER TABLE `hooks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `jobs`
 --
 
@@ -60,7 +115,7 @@ CREATE TABLE `jobs` (
   `created_at` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `jobs_queue_reserved_at_index` (`queue`,`reserved_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,6 +124,7 @@ CREATE TABLE `jobs` (
 
 LOCK TABLES `jobs` WRITE;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
+INSERT INTO `jobs` VALUES (1,'task','{\"displayName\":\"App\\\\Jobs\\\\Task\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"timeout\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\Task\",\"command\":\"O:13:\\\"App\\\\Jobs\\\\Task\\\":5:{s:7:\\\"\\u0000*\\u0000task\\\";O:45:\\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\\":2:{s:5:\\\"class\\\";s:8:\\\"App\\\\Task\\\";s:2:\\\"id\\\";i:40;}s:6:\\\"\\u0000*\\u0000job\\\";N;s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";s:4:\\\"task\\\";s:5:\\\"delay\\\";N;}\"}}',0,NULL,1500363269,1500363269),(2,'task','{\"displayName\":\"App\\\\Jobs\\\\Task\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"timeout\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\Task\",\"command\":\"O:13:\\\"App\\\\Jobs\\\\Task\\\":5:{s:7:\\\"\\u0000*\\u0000task\\\";O:45:\\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\\":2:{s:5:\\\"class\\\";s:8:\\\"App\\\\Task\\\";s:2:\\\"id\\\";i:41;}s:6:\\\"\\u0000*\\u0000job\\\";N;s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";s:4:\\\"task\\\";s:5:\\\"delay\\\";N;}\"}}',0,NULL,1500363277,1500363277),(3,'task','{\"displayName\":\"App\\\\Jobs\\\\Task\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"timeout\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\Task\",\"command\":\"O:13:\\\"App\\\\Jobs\\\\Task\\\":5:{s:7:\\\"\\u0000*\\u0000task\\\";O:45:\\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\\":2:{s:5:\\\"class\\\";s:8:\\\"App\\\\Task\\\";s:2:\\\"id\\\";i:42;}s:6:\\\"\\u0000*\\u0000job\\\";N;s:10:\\\"connection\\\";N;s:5:\\\"queue\\\";s:4:\\\"task\\\";s:5:\\\"delay\\\";N;}\"}}',0,NULL,1500364258,1500364258);
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +140,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +149,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2017_07_10_064138_create_projects_table',1),(4,'2017_07_10_065946_create_tasks_table',2),(5,'2017_07_12_064433_create_jobs_table',3),(6,'2017_07_12_064518_create_failed_jobs_table',4),(7,'2017_07_12_080750_updateTask',5),(8,'2017_07_14_024603_update_task_table',6);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2017_07_10_064138_create_projects_table',1),(4,'2017_07_10_065946_create_tasks_table',2),(5,'2017_07_12_064433_create_jobs_table',3),(6,'2017_07_12_064518_create_failed_jobs_table',4),(7,'2017_07_12_080750_updateTask',5),(8,'2017_07_14_024603_update_task_table',6),(9,'2017_07_14_034836_create_hooks_table',7),(10,'2017_07_14_035050_create_hook_project_table',7),(11,'2017_07_14_061831_update_project_description',8),(12,'2017_07_14_094130_create_unknown_hooks_table',9),(14,'2017_07_19_095819_update_hook_add_active_status',10);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,6 +187,7 @@ DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'project name',
+  `description` time DEFAULT NULL,
   `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'owner of the project',
   `yml` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'project setting file',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -145,7 +202,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` VALUES (22,'Ron Blanda1','2','Et enim harum minima reiciendis explicabo. Suscipit at quia et non. Praesentium totam tenetur qui voluptatibus aut sunt nulla. Dolorem quia id cupiditate exercitationem quia.h','2017-07-10 07:48:13','2017-07-12 02:37:44'),(23,'Schuyler Maggio','zackery.rempel@example.com','Possimus fugit omnis corporis consequatur quod voluptas. Recusandae ut et cupiditate veniam magnam repudiandae aut. Repellendus a nesciunt eius.','2017-07-10 07:48:13','2017-07-10 07:48:13'),(24,'Camron Dibbert MD','xdubuque@example.com','Corrupti suscipit earum enim illo qui magni officiis. Quibusdam adipisci odit mollitia minus ut deleniti. Est doloremque dolorum repudiandae et.','2017-07-10 07:48:13','2017-07-10 07:48:13'),(25,'Prof. Levi Gutkowski Jr.','zhaley@example.org','Reiciendis id enim animi eum. Animi dolor eaque ut explicabo ullam nisi. Esse dolore sed autem ad repellat recusandae doloremque. Mollitia facere eum quasi labore non illo.','2017-07-10 07:48:13','2017-07-10 07:48:13'),(26,'Nickolas Walker','rice.cecile@example.net','Rerum ipsam atque iusto commodi at. Nulla eveniet totam voluptatem minus. Harum aliquam praesentium rerum impedit voluptatem. Ullam quas sed rerum sunt ad quos.','2017-07-10 07:48:13','2017-07-10 07:48:13'),(27,'vestin','1','script:\r\n    - mkdir tmp\r\n    - cd tmp && echo 1>file','2017-07-11 07:53:39','2017-07-13 09:58:20');
+INSERT INTO `projects` VALUES (22,'Ron Blanda1',NULL,'2','Et enim harum minima reiciendis explicabo. Suscipit at quia et non. Praesentium totam tenetur qui voluptatibus aut sunt nulla. Dolorem quia id cupiditate exercitationem quia.h','2017-07-10 07:48:13','2017-07-12 02:37:44'),(23,'Schuyler Maggio',NULL,'zackery.rempel@example.com','Possimus fugit omnis corporis consequatur quod voluptas. Recusandae ut et cupiditate veniam magnam repudiandae aut. Repellendus a nesciunt eius.','2017-07-10 07:48:13','2017-07-10 07:48:13'),(24,'Camron Dibbert MD',NULL,'xdubuque@example.com','Corrupti suscipit earum enim illo qui magni officiis. Quibusdam adipisci odit mollitia minus ut deleniti. Est doloremque dolorum repudiandae et.','2017-07-10 07:48:13','2017-07-10 07:48:13'),(25,'Prof. Levi Gutkowski Jr.',NULL,'zhaley@example.org','Reiciendis id enim animi eum. Animi dolor eaque ut explicabo ullam nisi. Esse dolore sed autem ad repellat recusandae doloremque. Mollitia facere eum quasi labore non illo.','2017-07-10 07:48:13','2017-07-10 07:48:13'),(26,'Nickolas Walker',NULL,'rice.cecile@example.net','Rerum ipsam atque iusto commodi at. Nulla eveniet totam voluptatem minus. Harum aliquam praesentium rerum impedit voluptatem. Ullam quas sed rerum sunt ad quos.','2017-07-10 07:48:13','2017-07-10 07:48:13'),(27,'vestin',NULL,'1','script:\r\n    - mkdir tmp\r\n    - cd tmp && echo 1>file','2017-07-11 07:53:39','2017-07-13 09:58:20');
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +223,7 @@ CREATE TABLE `tasks` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `yml` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'task yml. copy form project when build task',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,8 +232,33 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` VALUES (11,22,0,'01:46:32','22:47:47','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(12,22,0,'16:32:30','23:19:51','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(13,23,0,'10:34:00','22:57:53','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(14,23,0,'15:50:33','08:33:29','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(15,24,0,'20:04:14','16:04:12','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(16,24,0,'12:09:28','09:41:23','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(17,25,0,'00:34:51','23:02:12','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(18,25,0,'21:54:25','00:22:45','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(19,26,0,'08:04:42','02:11:09','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(20,26,0,'17:27:25','11:08:02','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(21,27,0,NULL,NULL,'2017-07-12 08:20:02','2017-07-12 08:20:02',''),(22,27,0,NULL,NULL,'2017-07-12 08:21:42','2017-07-12 08:21:42',''),(23,27,0,NULL,NULL,'2017-07-12 08:22:12','2017-07-12 08:22:12',''),(24,27,0,NULL,NULL,'2017-07-12 08:22:48','2017-07-12 08:22:48',''),(25,27,0,NULL,NULL,'2017-07-12 08:26:09','2017-07-12 08:26:09',''),(26,27,0,NULL,NULL,'2017-07-12 08:38:07','2017-07-12 08:38:07',''),(27,27,0,NULL,NULL,'2017-07-12 08:39:47','2017-07-12 08:39:47',''),(28,27,0,NULL,NULL,'2017-07-12 08:43:50','2017-07-12 08:43:50',''),(29,27,0,NULL,NULL,'2017-07-12 08:44:23','2017-07-12 08:44:23',''),(30,27,100,'10:06:56','10:06:56','2017-07-12 09:14:36','2017-07-12 10:06:56',''),(31,27,100,'10:06:56','10:06:56','2017-07-12 10:06:42','2017-07-12 10:06:56',''),(32,27,100,'10:10:45','10:10:45','2017-07-12 10:10:44','2017-07-12 10:10:45',''),(33,27,100,'10:16:35','10:16:35','2017-07-12 10:16:34','2017-07-12 10:16:35',''),(34,27,20,'09:23:07',NULL,'2017-07-13 08:46:07','2017-07-13 09:23:07',''),(35,27,-1,'09:23:04',NULL,'2017-07-13 09:04:41','2017-07-13 09:23:07',''),(36,27,-1,'09:25:19',NULL,'2017-07-13 09:25:17','2017-07-13 09:25:19',''),(37,27,100,'09:58:45','09:58:45','2017-07-13 09:58:22','2017-07-13 09:58:45',''),(38,27,100,'02:31:41','02:31:41','2017-07-14 02:31:30','2017-07-14 02:31:41',''),(39,27,100,'02:43:13','02:43:13','2017-07-14 02:43:12','2017-07-14 02:43:13','');
+INSERT INTO `tasks` VALUES (11,22,0,'01:46:32','22:47:47','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(12,22,0,'16:32:30','23:19:51','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(13,23,0,'10:34:00','22:57:53','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(14,23,0,'15:50:33','08:33:29','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(15,24,0,'20:04:14','16:04:12','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(16,24,0,'12:09:28','09:41:23','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(17,25,0,'00:34:51','23:02:12','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(18,25,0,'21:54:25','00:22:45','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(19,26,0,'08:04:42','02:11:09','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(20,26,0,'17:27:25','11:08:02','2017-07-10 07:48:13','2017-07-10 07:48:13',''),(21,27,0,NULL,NULL,'2017-07-12 08:20:02','2017-07-12 08:20:02',''),(22,27,0,NULL,NULL,'2017-07-12 08:21:42','2017-07-12 08:21:42',''),(23,27,0,NULL,NULL,'2017-07-12 08:22:12','2017-07-12 08:22:12',''),(24,27,0,NULL,NULL,'2017-07-12 08:22:48','2017-07-12 08:22:48',''),(25,27,0,NULL,NULL,'2017-07-12 08:26:09','2017-07-12 08:26:09',''),(26,27,0,NULL,NULL,'2017-07-12 08:38:07','2017-07-12 08:38:07',''),(27,27,0,NULL,NULL,'2017-07-12 08:39:47','2017-07-12 08:39:47',''),(28,27,0,NULL,NULL,'2017-07-12 08:43:50','2017-07-12 08:43:50',''),(29,27,0,NULL,NULL,'2017-07-12 08:44:23','2017-07-12 08:44:23',''),(30,27,100,'10:06:56','10:06:56','2017-07-12 09:14:36','2017-07-12 10:06:56',''),(31,27,100,'10:06:56','10:06:56','2017-07-12 10:06:42','2017-07-12 10:06:56',''),(32,27,100,'10:10:45','10:10:45','2017-07-12 10:10:44','2017-07-12 10:10:45',''),(33,27,100,'10:16:35','10:16:35','2017-07-12 10:16:34','2017-07-12 10:16:35',''),(34,27,20,'09:23:07',NULL,'2017-07-13 08:46:07','2017-07-13 09:23:07',''),(35,27,-1,'09:23:04',NULL,'2017-07-13 09:04:41','2017-07-13 09:23:07',''),(36,27,-1,'09:25:19',NULL,'2017-07-13 09:25:17','2017-07-13 09:25:19',''),(37,27,100,'09:58:45','09:58:45','2017-07-13 09:58:22','2017-07-13 09:58:45',''),(38,27,100,'02:31:41','02:31:41','2017-07-14 02:31:30','2017-07-14 02:31:41',''),(39,27,100,'02:43:13','02:43:13','2017-07-14 02:43:12','2017-07-14 02:43:13',''),(40,27,10,NULL,NULL,'2017-07-18 07:34:29','2017-07-18 07:34:29','script:\r\n    - mkdir tmp\r\n    - cd tmp && echo 1>file'),(41,27,10,NULL,NULL,'2017-07-18 07:34:37','2017-07-18 07:34:37','script:\r\n    - mkdir tmp\r\n    - cd tmp && echo 1>file'),(42,27,10,NULL,NULL,'2017-07-18 07:50:58','2017-07-18 07:50:58','script:\r\n    - mkdir tmp\r\n    - cd tmp && echo 1>file');
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `unknown_hooks`
+--
+
+DROP TABLE IF EXISTS `unknown_hooks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `unknown_hooks` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `request` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'contain server & params',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `unknown_hooks`
+--
+
+LOCK TABLES `unknown_hooks` WRITE;
+/*!40000 ALTER TABLE `unknown_hooks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `unknown_hooks` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -217,4 +299,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-14  2:54:49
+-- Dump completed on 2017-07-20  6:13:04

@@ -9,9 +9,8 @@
 
 {% block content %}
     <h1>Pre build Project <i>{{ project.name }}</i></h1>
-    <form action="{{ route('unknown.hooks.clear') }}" method="post">
+    <form action="{{ route('build',[project.id]) }}" method="post">
         {{ csrf_field() }}
-        <input type="hidden" name="_method" value="DELETE">
-        <button class="btn btn-warning btn-sm">clear</button>
+        <button class="btn btn-primary btn-sm">build</button>
     </form>
 {% endblock %}
