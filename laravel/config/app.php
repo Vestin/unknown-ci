@@ -232,4 +232,9 @@ return [
         'SideMenu' => \App\Components\SideMenu::class,
     ],
 
+    'basicAuth' => [
+        'user' => 'admin',
+        'password' => 'vestin'
+    ]
+
 ];
