@@ -26,3 +26,19 @@ sudo docker exec -it unknow-dev-container /bin/bash
 cd project
 npm run dev
 ```
+
+
+tests
+```
+./vendor/bin/codecept run
+```
+
+dump databasefile
+```
+mysqldump -uroot -p123456 unknow > tests/_data/dump.sql
+```
+
+code coverage
+```
+./vendor/bin/codecept run --coverage --coverage-html
+```
