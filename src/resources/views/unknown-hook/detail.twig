@@ -19,7 +19,7 @@
         {% for key,value in block %}
             <dl>
                 <dt>{{ key }}</dt>
-                <dd>{{ value }}</dd>
+                <dd>{{ value|json_encode }}</dd>
             </dl>
         {% else %}
             No data here.
