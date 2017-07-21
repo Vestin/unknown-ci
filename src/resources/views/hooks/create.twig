@@ -48,7 +48,7 @@
                 <div class="pull-left">
                     <dl>
                         <dt realkey="{{ blockKey }}.{{ key }}">{{ key }}</dt>
-                        <dd>{{ value }}</dd>
+                        <dd>{{ value|json_encode }}</dd>
                     </dl>
                 </div>
             </div>
