@@ -42,4 +42,9 @@ class TaskViewModel extends ViewModel
         return $this->model->statusDes[$this->status];
     }
 
+    public function getLog()
+    {
+        return $this->model->getLog();
+    }
+
 }

@@ -52,13 +52,21 @@ class Task implements ShouldQueue
                 $process = new Process($command, $cwd);
                 $process->setTimeout(3600);
                 $log->info('Process working dir: ' . $process->getWorkingDirectory());
-                $process->run();
+                $process->start();
+
+                foreach ($process as $type => $data) {
+                    if ($process::OUT === $type) {
+                        if(!empty($data)&&$data!=' '&& $data!=PHP_EOL &&$data != "\n" && $data!="\r" && strlen($data)>1)
+                            $log->info($data);
+                    } else { // $process::ERR === $type
+                        if(!empty($data)&&$data!=' '&& $data!=PHP_EOL &&$data != "\n" && $data!="\r" && strlen($data)>1)
+                            $log->info($data);
+                    }
+                }
+
                 if ($process->isSuccessful()) {
-                    $log->info($process->getOutput());
                     continue;
                 } else {
-                    $log->info($process->getOutput());
-                    $log->info($process->getErrorOutput());
                     throw new \Exception('process error [END]');
                 }
             }
@@ -94,8 +102,8 @@ class Task implements ShouldQueue
 
     private function removeDir($cwd)
     {
-        if(!file_exists($cwd)){
-            return ;
+        if (!file_exists($cwd)) {
+            return;
         }
         $files = scandir($cwd);
         foreach ($files as $file) {
