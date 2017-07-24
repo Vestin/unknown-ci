@@ -1,28 +1,6 @@
-web
---
-
-1. all project list
-2. project tasks
-3. project task detail
-
---build
-
-KEY-WORD
-- ENV
-- BUILDER
-
-KEY-WORD-EVENT
-    - PREPARE-BUILD
-    - BEFORE-BUILD
-    - AFTER-BUILD
-    - FINISH-BUILD
-
-BUILDING
-    - PREPARE-BUILD
-    - BEFORE-BUILD
-    - AFTER-BUILD
-    - FINISH-BUILD
-
+unknown-ci
+---
+@vestin
 
 queue
 ```
@@ -63,3 +41,8 @@ chown www-data:www-data -R src/bootstrap/cache/
 
 web server
 see nginx conf example in `dev/nginx/unknow`
+
+start queue worker
+```
+php artisan queue:worker --queue:task
+```
