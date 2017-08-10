@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'file'),
+    'default' => env('UNKNOWN_CI_CACHE_DRIVER', 'file'),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,18 +51,18 @@ return [
 
         'memcached' => [
             'driver' => 'memcached',
-            'persistent_id' => env('MEMCACHED_PERSISTENT_ID'),
+            'persistent_id' => env('UNKNOWN_CI_MEMCACHED_PERSISTENT_ID'),
             'sasl' => [
-                env('MEMCACHED_USERNAME'),
-                env('MEMCACHED_PASSWORD'),
+                env('UNKNOWN_CI_MEMCACHED_USERNAME'),
+                env('UNKNOWN_CI_MEMCACHED_PASSWORD'),
             ],
             'options' => [
                 // Memcached::OPT_CONNECT_TIMEOUT  => 2000,
             ],
             'servers' => [
                 [
-                    'host' => env('MEMCACHED_HOST', '127.0.0.1'),
-                    'port' => env('MEMCACHED_PORT', 11211),
+                    'host' => env('UNKNOWN_CI_MEMCACHED_HOST', '127.0.0.1'),
+                    'port' => env('UNKNOWN_CI_MEMCACHED_PORT', 11211),
                     'weight' => 100,
                 ],
             ],

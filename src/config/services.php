@@ -15,24 +15,24 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => env('UNKNOWN_CI_MAILGUN_DOMAIN'),
+        'secret' => env('UNKNOWN_CI_MAILGUN_SECRET'),
     ],
 
     'ses' => [
-        'key' => env('SES_KEY'),
-        'secret' => env('SES_SECRET'),
+        'key' => env('UNKNOWN_CI_SES_KEY'),
+        'secret' => env('UNKNOWN_CI_SES_SECRET'),
         'region' => 'us-east-1',
     ],
 
     'sparkpost' => [
-        'secret' => env('SPARKPOST_SECRET'),
+        'secret' => env('UNKNOWN_CI_SPARKPOST_SECRET'),
     ],
 
     'stripe' => [
         'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+        'key' => env('UNKNOWN_CI_STRIPE_KEY'),
+        'secret' => env('UNKNOWN_CI_STRIPE_SECRET'),
     ],
 
 ];

@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('BROADCAST_DRIVER', 'null'),
+    'default' => env('UNKNOWN_CI_BROADCAST_DRIVER', 'null'),
 
     /*
     |--------------------------------------------------------------------------
@@ -32,9 +32,9 @@ return [
 
         'pusher' => [
             'driver' => 'pusher',
-            'key' => env('PUSHER_APP_KEY'),
-            'secret' => env('PUSHER_APP_SECRET'),
-            'app_id' => env('PUSHER_APP_ID'),
+            'key' => env('UNKNOWN_CI_PUSHER_APP_KEY'),
+            'secret' => env('UNKNOWN_CI_PUSHER_APP_SECRET'),
+            'app_id' => env('UNKNOWN_CI_PUSHER_APP_ID'),
             'options' => [
                 //
             ],

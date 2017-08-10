@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'file'),
+    'driver' => env('UNKNOWN_CI_SESSION_DRIVER', 'file'),
 
     /*
     |--------------------------------------------------------------------------
@@ -148,7 +148,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => env('UNKNOWN_CI_SESSION_DOMAIN', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -161,7 +161,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', false),
+    'secure' => env('UNKNOWN_CI_SESSION_SECURE_COOKIE', false),
 
     /*
     |--------------------------------------------------------------------------

@@ -57,12 +57,12 @@ class Task extends Model
 
     public function getLogPath()
     {
-        return env('LOCAL_ROOT_PATH') . '/build/project_' . $this->project->id . '/task_' . $this->id . '.log';
+        return env('UNKNOWN_CI_LOCAL_ROOT_PATH') . '/build/project_' . $this->project->id . '/task_' . $this->id . '.log';
     }
 
     public function getWorkSpace()
     {
-        return env('LOCAL_ROOT_PATH') . '/build/project_' . $this->project->id . '/task_' . $this->id . '_workspace/';
+        return env('UNKNOWN_CI_LOCAL_ROOT_PATH') . '/build/project_' . $this->project->id . '/task_' . $this->id . '_workspace/';
     }
 
     /**
