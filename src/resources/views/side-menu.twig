@@ -1,15 +1,7 @@
 {% if sideMenu %}
-    <style>
-        .side-menu{
-            list-style: circle;
-        }
-        .side-menu li{
-            list-style: circle;
-        }
-    </style>
-    <ul class="side-menu">
-    {% for item in sideMenu %}
-        <li><a href="{{ item.url }}">{{ item.name }}</a></li>
-    {% endfor %}
+    <ul class="list-group">
+        {% for item in sideMenu %}
+            <a class="list-group-item" href="{{ item.url }}">{{ item.name }}</a>
+        {% endfor %}
     </ul>
 {% endif %}

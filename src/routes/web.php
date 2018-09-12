@@ -51,6 +51,7 @@ Route::get('task/{task_id}', function ($task_id) {
     $task = \App\Task::findOrFail($task_id);
     return response()->redirectToRoute('project-task', [$task->project_id, $task_id]);
 })->name('task')->middleware('basicAuth');
+Route::get('tasks','TaskController@all')->name('tasks')->middleware('basicAuth');
 
 Route::get('project/{project_id}/task/{task_id}', 'ProjectController@task')
     ->name('project-task')
