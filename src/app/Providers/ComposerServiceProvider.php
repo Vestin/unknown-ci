@@ -11,7 +11,7 @@ namespace App\Providers;
 
 use App\Http\ViewComposers\StatusMessageViewComposer;
 use Illuminate\Support\Facades\View;
-use TwigBridge\ServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
 {

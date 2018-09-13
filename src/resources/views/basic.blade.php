@@ -8,29 +8,33 @@
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="{{ asset('bootstrap-3.3.7-dist/css/bootstrap.css') }}">
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>@yield('title')</title>
 
     <!-- Fonts -->
-    {% block head %}{% endblock %}
+    @yield('head')
 </head>
 <body>
-{% include 'main-menu.twig' %}
+@component('main-menu')
+@endcomponent
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2">
-            {% include 'side-menu.twig' %}
+
+            @component('side-menu')
+            @endcomponent
         </div>
         <div class="col-md-10">
-            {% include 'status-message.twig' %}
-            {% include 'error.twig' %}
-            {% block content %}
+            @component('status-message')
+            @endcomponent
+            @component('error')
+            @endcomponent
+
+            @yield('content')
         </div>
     </div>
-    {% endblock %}
 
 </div>
 </body>
 
-{% block script %}
-{% endblock %}
+@yield('script')
 </html>

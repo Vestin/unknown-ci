@@ -1,13 +1,11 @@
-{% extends 'basic.twig' %}
+@extends('basic')
 
-{% block title %}add project{% endblock %}
-{% block head %}
-    <style>
+@section('title')
+    add project
+@endsection
 
-    </style>
-{% endblock %}
 
-{% block content %}
+@section('content')
     <h1>add project</h1>
     <form action="{{ route('project.add') }}" method="post">
         {{ csrf_field() }}
@@ -26,4 +24,4 @@
 
         <button type="submit" class="btn btn-sm btn-primary">add</button>
     </form>
-{% endblock %}
+@endsection

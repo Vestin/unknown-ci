@@ -10,8 +10,7 @@
         "doctrine/dbal": "^2.5",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "league/tactician": "^1.0",
-        "rcrowe/twigbridge": "^0.9.4"
+        "league/tactician": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

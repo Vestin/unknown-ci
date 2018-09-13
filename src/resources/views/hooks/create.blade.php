@@ -1,8 +1,11 @@
-{% extends "basic.twig" %}
+@extends('basic')
 
-{% block title %}hooks{% endblock %}
+@section('title')
+    hooks
+@endsection
 
-{% block head %}
+
+@section('head')
     <style>
         .params-box > div {
             margin-right: 10px;
@@ -13,9 +16,9 @@
             word-break: break-all;
         }
     </style>
-{% endblock %}
+@endsection
 
-{% block content %}
+@section('content')
     <h1>Add Hook</h1>
     <form action="{{ route('hook.create') }}" method="post" id="createHookForm">
         {{ csrf_field() }}
@@ -34,32 +37,30 @@
             <label for="rule">Rules</label>
             <textarea name="rule" id="rule" class="form-control" rows="5"></textarea>
         </div>
-        
+
         <button class="btn btn-primary">Create Hook</button>
     </form>
     <hr>
-    {% for blockKey,block in unknownHook.parseRequest() %}
-        <h3>{{ blockKey }}</h3>
-        {% for key,value in block %}
+    @foreach($unknownHook->parseRequest() as $blockKey => $block)
+        <h3>{{ $blockKey }}</h3>
+        @foreach($block as $key=>$value)
             <div class="params-box">
                 <div class="pull-left">
                     <button class="btn btn-xs btn-success add-button">+</button>
                 </div>
                 <div class="pull-left">
                     <dl>
-                        <dt realkey="{{ blockKey }}.{{ key }}">{{ key }}</dt>
-                        <dd>{{ value|json_encode }}</dd>
+                        <dt realkey="{{ $blockKey }}.{{ $key }}">{{ $key }}</dt>
+                        <dd>{{ json_encode($value) }}</dd>
                     </dl>
                 </div>
             </div>
             <div class="clearfix"></div>
-        {% else %}
-            No data here.
-        {% endfor %}
-    {% endfor %}
-{% endblock %}
+        @endforeach
+    @endforeach
+@endsection
 
-{% block script %}
+@section('script')
     <script>
         $('.add-button').click(function () {
             $(this).attr('disabled', 'disabled');
@@ -71,4 +72,4 @@
             $('#rule').val(data + '\n');
         })
     </script>
-{% endblock %}
+@endsection

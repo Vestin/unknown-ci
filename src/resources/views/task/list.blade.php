@@ -1,12 +1,16 @@
-{% extends "basic.twig" %}
+@extends('basic')
 
-{% block title %}hooks{% endblock %}
-{% block content %}
+@section('title')
+    tasks
+@endsection
+
+@section('content')
     <h2>tasks</h2>
     <table class="table table-condensed table-bordered">
         <thead>
         <tr>
             <th>task ID</th>
+            <th>project</th>
             <th>status</th>
             <th>start time</th>
             <th>end time</th>
@@ -16,21 +20,23 @@
         </tr>
         </thead>
         <tbody>
-        {% for task in tasks|reverse %}
-            <tr class="{{ task.viewModel.statusClass }}">
-                <td><strong>{{ task.id }}</strong></td>
-                <td>{{ task.viewModel.statusDes }}</td>
-                <td>{{ task.start_time }}</td>
-                <td>{{ task.end_time }}</td>
-                <td>{{ task.created_at }}</td>
-                <td>{{ task.updated_at }}</td>
-                <td><a href="{{  route('task',[task.id]) }}">Detail</a></td>
+        @foreach( $tasks->sortByDesc('id') as $task)
+            <tr class="{{ $task->viewModel->statusClass }}">
+                <td>{{ $task->id }}</td>
+                <td><strong>{{ $task->project->name }}</strong></td>
+                <td>{{ $task->viewModel->statusDes }}</td>
+                <td>{{ $task->start_time }}</td>
+                <td>{{ $task->end_time }}</td>
+                <td>{{ $task->created_at }}</td>
+                <td>{{ $task->updated_at }}</td>
+                <td><a href="{{  route('task',[$task->id]) }}">Detail</a></td>
             </tr>
-        {% else %}
+        @endforeach
+        @if(empty($tasks))
             <tr>
                 <td colspan="6">No Data</td>
             </tr>
-        {% endfor %}
+        @endif
         </tbody>
         <tfoot>
         <tr>
@@ -44,4 +50,4 @@
         </tr>
         </tfoot>
     </table>
-{% endblock %}
+@endsection

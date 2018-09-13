@@ -1,12 +1,14 @@
-{% extends 'basic.twig' %}
+@extends('basic')
 
-{% block title %}Pre Clear All UnknownHooks{% endblock %}
+@section('title')
+    Pre Clear All UnknownHooks
+@endsection
 
-{% block content %}
-    <h1>Sure clear All UnknownHooks? <i>{{ project.name }}</i></h1>
+@section('content')
+    <h1>Sure clear All UnknownHooks? </h1>
     <form action="{{ route('unknown.hooks.clear') }}" method="post">
         {{ csrf_field() }}
         <input type="hidden" name="_method" value="DELETE">
         <button type="submit" class="btn btn-sm btn-primary">Clear</button>
     </form>
-{% endblock %}
+@endsection
