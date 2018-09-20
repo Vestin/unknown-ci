@@ -18,7 +18,7 @@ Route::get('/', function () {
     return redirect()->route('projects');
 });
 
-Route::get('oauth-login','OAuthController@login')->name('OAuth.login');
+Route::get('oauth-login', 'OAuthController@login')->name('OAuth.login');
 
 //show projects
 Route::get('projects', 'ProjectController@all')
@@ -86,6 +86,13 @@ Route::delete('hook/unknowns', 'UnknownHookController@clear')
     ->name('unknown.hooks.clear');
 Route::get('hook/unknown/{id}', 'UnknownHookController@detail')
     ->name('unknown.hook.detail');
-Auth::routes();
+
+if (config('auth.login_enable')) {
+    Auth::routes();
+}else{
+    Route::get('login',function(){
+        return response()->redirectTo(config('auth.login_url'));
+    })->name('login');
+}
 
 Route::get('/home', 'HomeController@index')->name('home');
