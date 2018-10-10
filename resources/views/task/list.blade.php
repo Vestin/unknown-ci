@@ -41,6 +41,7 @@
         <tfoot>
         <tr>
             <th>task ID</th>
+            <th>project</th>
             <th>status</th>
             <th>start time</th>
             <th>end time</th>
