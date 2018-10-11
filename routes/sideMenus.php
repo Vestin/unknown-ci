@@ -36,3 +36,7 @@ SideMenu::register('hook', function ($sideMenu, \App\Hook $hook) {
     $sideMenu->push('Edit Hook', route('hook.edit', [$hook->id]));
     $sideMenu->push('Delete', route('hook.delete', [$hook->id]));
 });
+
+SideMenu::register('users', function ($sideMenu) {
+    $sideMenu->push('users',route('users'));
+});

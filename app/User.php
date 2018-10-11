@@ -27,4 +27,26 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->connection = config('auth.user_connection');
+    }
+
+
+    public function UserAttr()
+    {
+        return $this->hasOne(UserAttr::class);
+    }
+
+    public function isSuperAdmin()
+    {
+        return $this->userAttr && $this->UserAttr->super_admin;
+    }
+
+    public function isActive()
+    {
+        return $this->userAttr && $this->UserAttr->active;
+    }
 }

@@ -4,6 +4,7 @@ return [
 
     'login_enable' => env('LOGIN_ENABLE',true),
     'login_url' => env('LOGIN_URL',null),
+    'user_connection' => env('USER_CONNECTION','mysql'),
 
     /*
     |--------------------------------------------------------------------------

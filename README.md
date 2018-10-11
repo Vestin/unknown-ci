@@ -46,3 +46,22 @@ start queue worker
 ```
 php artisan queue:worker --queue:task
 ```
+
+
+Permission
+---
+### same domain session login control
+.env file
+```
+LOGIN_ENABLE=false
+SESSION_DOMAIN=app.io
+SESSION_COOKIE=app_session
+LOGIN_URL=http://app.io
+```
+
+`config/database` set session connection
+
+`app/User` Model add property
+```php
+protected $connection = 'connection-name';
+```

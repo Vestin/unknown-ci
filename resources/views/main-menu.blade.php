@@ -1,11 +1,14 @@
 <style>
-    .navbar{border-radius: 0px;}
+    .navbar {
+        border-radius: 0px;
+    }
 </style>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -20,6 +23,7 @@
                 <li><a href="{{ route('tasks') }}">Tasks </a></li>
                 <li><a href="{{ route('projects') }}">Projects</a></li>
                 <li><a href="{{ route('hooks') }}">Hooks</a></li>
+                <li><a href="{{ route('users') }}">Users</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
