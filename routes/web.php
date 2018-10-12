@@ -14,7 +14,7 @@
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['active-user'])->group(function () {
+Route::middleware(['active-user','verified'])->group(function () {
 
     Route::get('/', function () {
         return redirect()->route('tasks');
@@ -102,6 +102,10 @@ if (config('auth.login_enable')) {
     Route::get('login', function () {
         return response()->redirectTo(config('auth.login_url'));
     })->name('login');
+
+    Route::redirect('email/verify',config('auth.login_url'))->name('verification.notice');
+    Route::redirect('email/verify/{id}', config('auth.login_url'))->name('verification.verify');
+    Route::redirect('email/resend', config('auth.login_url'))->name('verification.resend');
 }
 
 Route::get('/home', 'HomeController@index')->name('home');
