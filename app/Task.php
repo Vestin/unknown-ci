@@ -7,6 +7,7 @@ use App\ViewModels\ViewModelTrait;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Rap2hpoutre\LaravelLogViewer\LaravelLogViewer;
 use Symfony\Component\Yaml\Yaml;
 
 class Task extends Model
@@ -52,7 +53,17 @@ class Task extends Model
         } catch (FileNotFoundException $exception) {
             return 'No Log';
         }
+    }
 
+    /**
+     * @return LaravelLogViewer
+     * @throws \Exception
+     */
+    public function getLogViewer()
+    {
+        $logViewer = new LaravelLogViewer();
+        $logViewer->setFile(storage_path($this->getLogPath()));
+        return $logViewer;
     }
 
     public function getLogPath()

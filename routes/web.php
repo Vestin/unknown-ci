@@ -79,7 +79,6 @@ Route::middleware(['active-user','verified'])->group(function () {
     Route::get('project/{id}/hook', 'HookController@project')
         ->name('project-hook');
 
-
     Route::get('hook/unknowns', 'UnknownHookController@all')
         ->name('unknown.hooks');
     Route::get('hook/unknowns/pre-clear', 'UnknownHookController@preClear')
@@ -95,6 +94,7 @@ Route::middleware(['active-user','verified'])->group(function () {
     Route::put('user/active-super-admin/{user_id}', 'UserController@activeSuperAdmin')->name('user.active-super-admin');
     Route::put('user/de-active-super-admin/{user_id}', 'UserController@deActiveSuperAdmin')->name('user.de-active-super-admin');
 
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('logs');
 });
 if (config('auth.login_enable')) {
     Auth::routes();
@@ -108,4 +108,3 @@ if (config('auth.login_enable')) {
     Route::redirect('email/resend', config('auth.login_url'))->name('verification.resend');
 }
 
-Route::get('/home', 'HomeController@index')->name('home');

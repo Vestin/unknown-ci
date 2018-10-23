@@ -24,6 +24,10 @@
                 <li><a href="{{ route('projects') }}">Projects</a></li>
                 <li><a href="{{ route('hooks') }}">Hooks</a></li>
                 <li><a href="{{ route('users') }}">Users</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li><a href="{{ route('logs') }}">Logs</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

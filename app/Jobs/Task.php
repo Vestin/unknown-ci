@@ -60,7 +60,7 @@ class Task implements ShouldQueue
                             $log->info($data);
                     } else { // $process::ERR === $type
                         if(!empty($data)&&$data!=' '&& $data!=PHP_EOL &&$data != "\n" && $data!="\r" && strlen($data)>1)
-                            $log->info($data);
+                            $log->error($data);
                     }
                 }
 
@@ -74,7 +74,7 @@ class Task implements ShouldQueue
             $log->info('end handling');
             $this->changeTaskStatus(TaskModel::STATUS_DONE);
         } catch (\Exception $e) {
-            $log->info($e->getMessage());
+            $log->error($e->getMessage());
             $this->changeTaskStatus(TaskModel::STATUS_ERROR);
             throw $e;
         }

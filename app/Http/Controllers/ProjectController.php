@@ -9,6 +9,7 @@ use App\Project;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rule;
+use Rap2hpoutre\LaravelLogViewer\LaravelLogViewer;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProjectController extends Controller
@@ -97,6 +98,9 @@ class ProjectController extends Controller
     public function task($project_id, $task_id)
     {
         $task = Task::where(['project_id' => $project_id, 'id' => $task_id])->firstOrFail();
+
+        $task->getLogViewer();
+
         return View::make('task', ['task' => $task]);
     }
 

@@ -13,6 +13,17 @@
         .task ul, li {
             list-style: none;
         }
+
+        .log-terminal{
+            background-color: #18171B;
+            padding:20px;
+            color:white;
+        }
+
+        .danger{
+            color:red;
+            font-weight: bold;
+        }
     </style>
 @endsection
 
@@ -31,5 +42,9 @@
         </ul>
     </div>
     <h3>log</h3>
-    <pre style="max-width:100%;">{{ $task->viewModel->getLog() }}</pre>
+    <div class="log-terminal">
+        @foreach(array_reverse($task->getLogViewer()->all()) as $log)
+            <p class="{{ $log['level_class'] }}">[{{ $log['level'] }}] {{$log['date']}} {{ $log['text'] }}</p>
+        @endforeach
+    </div>
 @endsection
